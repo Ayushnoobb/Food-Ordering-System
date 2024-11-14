@@ -51,32 +51,29 @@ public interface DatabaseInitializer {
                     "name TEXT NOT NULL," +
                     "description TEXT," +
                     "price REAL NOT NULL," +
-                    "category TEXT" +
                     ");";
             stmt.execute(foodItemsTable);
 
-            // Create Orders Table
             String ordersTable = "CREATE TABLE IF NOT EXISTS Orders (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "user_id INT NOT NULL," +
                     "order_date TEXT NOT NULL," +
-                    "total_price REAL NOT NULL," +
+                    "total_amount REAL NOT NULL," +
                     "status TEXT NOT NULL," +
                     "FOREIGN KEY (user_id) REFERENCES Users(id)" +
                     ");";
             stmt.execute(ordersTable);
 
-            // Create Order Details Table
-            String orderDetailsTable = "CREATE TABLE IF NOT EXISTS OrderDetails (" +
+            // OrderItems Table
+            String orderItemsTable = "CREATE TABLE IF NOT EXISTS OrderItems (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "order_id INT NOT NULL," +
-                    "food_item_id INT NOT NULL," +
+                    "item_name TEXT NOT NULL," +
                     "quantity INT NOT NULL," +
                     "price REAL NOT NULL," +
-                    "FOREIGN KEY (order_id) REFERENCES Orders(id)," +
-                    "FOREIGN KEY (food_item_id) REFERENCES FoodItems(id)" +
+                    "FOREIGN KEY (order_id) REFERENCES Orders(id)" +
                     ");";
-            stmt.execute(orderDetailsTable);
+            stmt.execute(orderItemsTable);
 
             System.out.println("Tables created successfully.");
 
