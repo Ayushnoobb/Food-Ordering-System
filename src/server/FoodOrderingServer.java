@@ -9,7 +9,7 @@ public class FoodOrderingServer {
 
         // Create an instance of the server implementation
         // UserServiceImp service = new UserServiceImp();
-        FoodOrderingServiceImpl service = new FoodOrderingServiceImpl();
+        User service = new User();
 
         // Bind the service object to the registry with the name "FoodOrderingService"
         registry.rebind("FoodOrderingService", service);

@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "java",
+          "name": "Launch Current File",
+          "request": "launch",
+          "mainClass": "${file}",
+          "vmArgs": "-cp ${workspaceFolder}\\lib\\mysql-connector-j-9.1.0.jar;${workspaceFolder}\\src"
+      }
+  ]
+}

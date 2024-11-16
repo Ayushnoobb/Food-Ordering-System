@@ -1,4 +1,3 @@
-package server;
 
 import java.rmi.RemoteException;
 
@@ -11,13 +10,13 @@ import java.sql.PreparedStatement;
 
 
 
-public interface UserServiceImp extends UnicastRemoteObject implements UserService {
+public class User extends UnicastRemoteObject implements UserService {
     
     // Declare a serialVersionUID to avoid the warning
     private static final long serialVersionUID = 1L;
 
-    protected UserServiceImp() throws RemoteException{
-        
+    protected User() throws RemoteException{
+        System.out.println("Out from here constructor");
     }
 
     public boolean registerUser(
@@ -33,7 +32,8 @@ public interface UserServiceImp extends UnicastRemoteObject implements UserServi
         PreparedStatement psInsert = null;
 
         try {
-            con = DataConnection.getConnection();
+            System.out.println("Out from here");
+            con = DatabaseConnection.getConnection();
 
             String checkEmailQuery = "SELECT email FROM Users WHERE email = ?";
             psCheck = con.prepareStatement(checkEmailQuery);
@@ -77,7 +77,7 @@ public interface UserServiceImp extends UnicastRemoteObject implements UserServi
     }
 
     public boolean loginUser(String email, String password) throws RemoteException {
-        Connection con = DataConnection.getConnection();
+        Connection con = DatabaseConnection.getConnection();
         Statement stmt = null;
         ResultSet rs = null;
 
@@ -117,7 +117,7 @@ public interface UserServiceImp extends UnicastRemoteObject implements UserServi
     }
 
     // Helper User class to store user details
-    public static class User {
+    public static class UserHelper {
         private String firstName;
         private String lastName;
         private String password;
@@ -125,7 +125,7 @@ public interface UserServiceImp extends UnicastRemoteObject implements UserServi
         private String email;
         private Integer role;
 
-        public User(String firstName, String lastName, String password, String passportNumber, String email, Integer role) {
+        public UserHelper(String firstName, String lastName, String password, String passportNumber, String email, Integer role) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.password = password;

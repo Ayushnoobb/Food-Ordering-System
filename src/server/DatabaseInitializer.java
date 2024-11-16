@@ -5,16 +5,19 @@ import java.sql.Statement;
 
 public class DatabaseInitializer {
 
-    private static final String DB_URL = "jdbc:sqlite:food_ordering.db";
+    private static final String DB_URL = "jdbc:sqlite:food_ordering.sqlite";
 
     public static void main(String[] args) {
         createTables();
     }
 
     public static void createTables() {
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             Statement stmt = conn.createStatement()) {
-
+        
+        try (
+            Connection conn = DriverManager.getConnection(DB_URL);
+            Statement stmt = conn.createStatement()) {
+            
+            System.out.println("out from here");
 
 
             // Create Roles Table
