@@ -1,0 +1,7 @@
+{
+  "java.project.sourcePaths": [
+    "src/newserver",
+    "src/server"
+  ],
+  "java.project.outputPath": "bin"
+}
